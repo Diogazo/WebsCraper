@@ -1,0 +1,61 @@
+{% extends "components/layout.html" %}
+
+{% block title %}Sign up{% endblock %}
+{% block content %}
+  <div class="row m-md-5 m-3">
+    <h1 class="col">Create a free account</h1>
+  </div>
+
+  <form method="post" action="/data-processing" class="row g-3 mx-3">
+    <div class="col-12 col-md-6">
+      <label for="validationDefault01" class="form-label">First name</label>
+      <input name="firstname" type="text" class="form-control" id="validationDefault01" required />
+    </div>
+    <div class="col-12 col-md-6">
+      <label for="validationDefault02" class="form-label">Email</label>
+      <input name="email" type="text" class="form-control" id="validationDefault02" required />
+    </div>
+    <div class="col-12 col-md-6">
+      <label for="validationDefaultUsername" class="form-label">Phone Number</label>
+      <div class="input-group">
+        <input
+          name="phone_number"
+          type="text"
+          class="form-control"
+          id="validationDefaultPhone"
+          aria-describedby="inputGroupPrepend2"
+          pattern="[\+]?[0-9]{1,4}?[-\s\./0-9]*"  
+          required
+        />
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <label for="validationDefault04" class="form-label">Province</label>
+      <select name="province" class="form-select" id="validationDefault04" required>
+        <option selected disabled value="">Choose...</option>
+        <option value="guayaquil">Guayas</option>
+        <option value="pichincha">Pichincha</option>
+        <option value="manabi">Manabí</option>
+        <option value="esmeraldas">Esmeraldas</option>
+        <option value="loja">Loja</option>
+      </select>
+    </div>
+    <div class="col-12 col-md-6">
+      <label for="validationDefault01" class="form-label">City</label>
+      <input name="city" type="text" class="form-control" id="validationDefault01" required />
+    </div>
+    <div class="col-12 col-md-6">
+      <label for="validationDefault05" class="form-label">Password</label>
+      <input
+        name="password_user"
+        type="password"
+        class="form-control"
+        id="validationDefault05"
+        required
+      />
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Send Data</button>
+    </div>
+  </form>
+{% endblock %}
