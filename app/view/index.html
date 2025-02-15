@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebScraper Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem 0;
+            position: relative;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .header-container h1 {
+            margin: 0;
+        }
+        .header-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        .header-buttons button {
+            background-color: #555;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .header-buttons button:hover {
+            background-color: #777;
+        }
+        .search-bar {
+            margin: 1rem 0;
+            text-align: center;
+        }
+        .search-bar input[type="text"] {
+            width: 50%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .categories {
+            display: flex;
+            justify-content: center;
+            background-color: #f9f9f9;
+            padding: 0.5rem 0;
+            margin-bottom: 2rem;
+        }
+        .categories a {
+            margin: 0 1rem;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .categories a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .scraped-data {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .data-card {
+            flex: 1 1 calc(33% - 1rem);
+            background: #f9f9f9;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .data-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #333;
+            color: #fff;
+            margin-top: 2rem;
+        }
+
+        /* Estilo para el mensaje de confirmación */
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            margin: 1rem auto;
+            max-width: 1200px;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>WebScraper</h1>
+            <div class="header-buttons">
+                <button onclick="window.location.href='/login'">Login</button>
+                <button onclick="window.location.href='/signup'">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mensaje de confirmación -->
+    {% if request.cookies.get("registration_success") %}
+        <div id="confirmation-message" class="alert-success">
+            ¡Registro exitoso! Bienvenido a WebScraper.
+        </div>
+    {% endif %}
+
+    <div class="search-bar">
+        <input type="text" placeholder="Search for products...">
+    </div>
+
+    <nav class="categories">
+        <a href="#">Cocina</a>
+        <a href="#">Vehiculos</a>
+        <a href="#">Comida</a>
+        <a href="#">Electronicos</a>
+        <a href="#">Muebles</a>
+    </nav>
+
+    <div class="container">
+        <h2 class="section-title">Productos mas buscados</h2>
+        <div class="scraped-data">
+            <div class="data-card">
+                <h3>Producto 1</h3>
+                <p>Precio: $19.99</p>
+                <p>Disponibilidad: In Stock</p>
+            </div>
+            <div class="data-card">
+                <h3>Producto 2</h3>
+                <p>Precio: $15.99</p>
+                <p>Disponibilidad: In Stock</p>
+            </div>
+            <div class="data-card">
+                <h3>Producto 3</h3>
+                <p>Precio: $12.99</p>
+                <p>Disponibilidad: In Stock</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 WebScraper App. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const confirmationMessage = document.getElementById("confirmation-message");
+            if (confirmationMessage) {
+                setTimeout(function() {
+                    confirmationMessage.style.display = "none";
+                }, 3000); 
+            }
+        });
+    </script>
+</body>
+</html>

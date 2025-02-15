@@ -7,7 +7,7 @@
   </div>
 
   <section class="row justify-content-center">
-    <form method="post" action="/user" class="col-sm-5 col-10">
+    <form method="post" action="/login" class="col-sm-5 col-10">
       <div class="mb-3">
         <label for="exampleInputUsername" class="form-label">Email</label>
         <input
@@ -22,6 +22,11 @@
         <label for="exampleInputPassword1" class="form-label">Password</label>
         <input name="password_user" type="password" class="form-control" id="exampleInputPassword1" required/>
       </div>
+      {% if error %}
+        <div class="alert alert-danger" role="alert">
+          {{ error }}
+        </div>
+      {% endif %}
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </section>
