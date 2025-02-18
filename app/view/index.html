@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebScraper Home</title>
     <style>
+        /* Tus estilos actuales */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -106,17 +107,6 @@
             color: #fff;
             margin-top: 2rem;
         }
-
-        /* Estilo para el mensaje de confirmación */
-        .alert-success {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 1rem;
-            margin: 1rem auto;
-            max-width: 1200px;
-            border-radius: 5px;
-            text-align: center;
-        }
     </style>
 </head>
 <body>
@@ -124,29 +114,30 @@
         <div class="header-container">
             <h1>WebScraper</h1>
             <div class="header-buttons">
-                <button onclick="window.location.href='/login'">Login</button>
-                <button onclick="window.location.href='/signup'">Sign Up</button>
+                {% if is_logged_in %}
+                    <!-- Botón de Perfil (visible si el usuario ha iniciado sesión) -->
+                    <button onclick="window.location.href='/user'">Perfil</button>
+                {% else %}
+                    <!-- Botones de Login y Sign Up (visibles si el usuario no ha iniciado sesión) -->
+                    <button onclick="window.location.href='/login'">Login</button>
+                    <button onclick="window.location.href='/signup'">Sign Up</button>
+                {% endif %}
             </div>
         </div>
     </header>
 
-    <!-- Mensaje de confirmación -->
-    {% if request.cookies.get("registration_success") %}
-        <div id="confirmation-message" class="alert-success">
-            ¡Registro exitoso! Bienvenido a WebScraper.
-        </div>
-    {% endif %}
-
     <div class="search-bar">
-        <input type="text" placeholder="Search for products...">
+        <form method="get" action="/scrape-prices" class="search-form">
+            <input type="text" name="search" placeholder="Search for products..." required>
+            <button type="submit">Search</button>
+        </form>
     </div>
 
     <nav class="categories">
-        <a href="#">Cocina</a>
-        <a href="#">Vehiculos</a>
-        <a href="#">Comida</a>
-        <a href="#">Electronicos</a>
-        <a href="#">Muebles</a>
+        <a href="/category/tecnologia">Tecnología</a>
+        <a href="/category/hogar">Hogar</a>
+        <a href="/category/moda">Moda</a>
+        <a href="/category/vehiculos">Vehículos</a>
     </nav>
 
     <div class="container">
@@ -173,16 +164,5 @@
     <footer>
         <p>&copy; 2025 WebScraper App. All rights reserved.</p>
     </footer>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const confirmationMessage = document.getElementById("confirmation-message");
-            if (confirmationMessage) {
-                setTimeout(function() {
-                    confirmationMessage.style.display = "none";
-                }, 3000); 
-            }
-        });
-    </script>
 </body>
 </html>

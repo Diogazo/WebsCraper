@@ -1,7 +1,7 @@
 from app.model.database import Database
 from werkzeug.security import generate_password_hash
 
-class User():
+class User:
     def __init__(self, data_user):
         self.db = Database()  # Se cambia HandleDB por Database
         self.data_user = data_user
@@ -24,3 +24,5 @@ class User():
         self.data_user["password_user"] = generate_password_hash(
             self.data_user["password_user"], method="pbkdf2:sha256", salt_length=16
         )  # Configuración más estándar
+
+    

@@ -12,7 +12,7 @@
       <div class="card-body">
         <h5 class="card-title">
           Hi <mark>{% if data_user and 'firstname' in data_user %}{{ data_user.firstname }}{% else %}User{% endif %}</mark>
-      </h5>
+        </h5>
         <p class="card-text">This is a list with your data.</p>
       </div>
       <ul class="list-group list-group-flush">
@@ -22,6 +22,32 @@
         <li class="list-group-item">Province: <mark>{{ data_user.get('province', 'N/A') }}</mark></li>
         <li class="list-group-item">City: <mark>{{ data_user.get('city', 'N/A') }}</mark></li>
       </ul>
+    </div>
+  </div>
+
+  <!-- Sección de Favoritos -->
+  <div class="row justify-content-center mt-4">
+    <div class="col-5">
+      <h2>Favoritos</h2>
+      {% if favorites %}
+        <ul class="list-group">
+          {% for favorite in favorites %}
+            <li class="list-group-item">
+              <strong>{{ favorite.Name }}</strong> - {{ favorite.Price }}
+              <a href="{{ favorite.Link }}" target="_blank" class="btn btn-sm btn-primary float-end">Ver producto</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No tienes productos favoritos.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Botón para cerrar sesión -->
+  <div class="row justify-content-center mt-4">
+    <div class="col-5 text-center">
+      <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
     </div>
   </div>
 {% endblock %}

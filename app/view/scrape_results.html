@@ -31,13 +31,17 @@
 </head>
 <body>
     <h1>Resultados para "{{ search }}"</h1>
-    <ul>
-        {% for product in products %}
-            <li>
-                <strong>{{ product.Name }}</strong> - {{ product.Price }} 
-                <a href="{{ product.Link }}" target="_blank">Ver producto</a>
-            </li>
-        {% endfor %}
-    </ul>
+    {% if products %}
+        <ul>
+            {% for product in products %}
+                <li>
+                    <strong>{{ product.Name }}</strong> - {{ product.Price }} 
+                    <a href="{{ product.Link }}" target="_blank">Ver producto</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron resultados.</p>
+    {% endif %}
 </body>
 </html>

@@ -1,0 +1,16 @@
+{% extends "components/layout.html" %}
+
+{% block title %}{{ category }}{% endblock %}
+
+{% block content %}
+  <h1>{{ category }}</h1>
+  <div class="scraped-data">
+      {% for product in products %}
+          <div class="data-card">
+              <h3>{{ product.Name }}</h3>
+              <p>Precio: {{ product.Price }}</p>
+              <a href="{{ product.Link }}" target="_blank">Ver producto</a>
+          </div>
+      {% endfor %}
+  </div>
+{% endblock %}
