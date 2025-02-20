@@ -4,20 +4,6 @@
 
 {% block content %}
 <body>
-    <header>
-        <div class="header-container">
-            <h1>WebScraper</h1>
-            <div class="header-buttons">
-                {% if is_logged_in %}
-                <button onclick="window.location.href='/user'">Perfil</button>
-                {% else %}
-
-                <button onclick="window.location.href='/signup'">Sign Up</button>
-                {% endif %}
-            </div>
-        </div>
-    </header>
-
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">

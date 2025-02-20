@@ -1,5 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "components/layout.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
 
 <head>
     <meta charset="UTF-8">
@@ -175,20 +178,6 @@
 </head>
 
 <body>
-    <header>
-        <div class="header-container">
-            <h1>WebScraper</h1>
-            <div class="header-buttons">
-                {% if is_logged_in %}
-                <button onclick="window.location.href='/user'">Perfil</button>
-                {% else %}
-                <button onclick="window.location.href='/login'">Login</button>
-                <button onclick="window.location.href='/signup'">Sign Up</button>
-                {% endif %}
-            </div>
-        </div>
-    </header>
-
     <div class="search-bar">
         <form method="get" action="/scrape-prices" class="search-form">
             <input type="text" name="search" placeholder="Buscar productos..." required>
@@ -227,10 +216,7 @@
             </div>
         </div>
     </div>
-
-    <footer>
-        <p>&copy; 2025 WebScraper App. Todos los derechos reservados.</p>
-    </footer>
 </body>
 
 </html>
+{% endblock %}

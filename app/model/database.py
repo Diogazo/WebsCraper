@@ -9,7 +9,7 @@ class Database:
                 user=os.getenv("DB_USER", "root"),
                 password=os.getenv("DB_PASS", "Diogazo045."),
                 database=os.getenv("DB_NAME", "webscrapper"),
-                port=int(os.getenv("DB_PORT", 3306))
+                port=int(os.getenv("DB_PORT", 3307))
             )
             self._cur = self._con.cursor(dictionary=True)
         except mysql.connector.Error as e:

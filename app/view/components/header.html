@@ -1,33 +1,15 @@
 {% block header %}
-  <header class="bg-dark text-white">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">WebScraper</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            {% if not is_logged_in %}
-              <li class="nav-item">
-                <a class="nav-link" href="/signup">Sign Up</a>
-              </li>
-            {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="/user">Perfil</a>
-              </li>
-            {% endif %}
-          </ul>
-        </div>
+<header>
+  <div class="header-container">
+      <h1>WebScraper</h1>
+      <div class="header-buttons">
+          {% if is_logged_in %}
+              <button onclick="window.location.href='/user'">Perfil</button>
+          {% else %}
+                <button onclick="window.location.href='/login'">Login</button>
+                <button onclick="window.location.href='/signup'">Sign Up</button>
+          {% endif %}
       </div>
-    </nav>
-  </header>
+  </div>
+</header>
 {% endblock %}
