@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebScraper Home</title>
+    <title>WebScraper - Productos</title>
     <style>
-        /* Tus estilos actuales */
+        /* Estilos generales */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f8f9fa;
+            color: #343a40;
         }
+
+        /* Encabezado */
         header {
-            background-color: #333;
+            background-color: #007bff;
             color: #fff;
             padding: 1rem 0;
-            position: relative;
         }
+
         .header-container {
             display: flex;
             justify-content: space-between;
@@ -26,101 +29,161 @@
             margin: 0 auto;
             padding: 0 1rem;
         }
+
         .header-container h1 {
             margin: 0;
+            font-size: 2rem;
+            font-weight: bold;
         }
+
         .header-buttons {
             display: flex;
             gap: 1rem;
         }
+
         .header-buttons button {
-            background-color: #555;
+            background-color: #28a745;
             color: #fff;
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
+
         .header-buttons button:hover {
-            background-color: #777;
+            background-color: #218838;
         }
+
+        /* Barra de búsqueda */
         .search-bar {
-            margin: 1rem 0;
+            margin: 2rem 0;
             text-align: center;
         }
+
         .search-bar input[type="text"] {
             width: 50%;
-            padding: 0.5rem;
-            border: 1px solid #ddd;
+            padding: 0.8rem;
+            border: 1px solid #ced4da;
             border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1rem;
         }
+
+        .search-bar button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Categorías */
         .categories {
             display: flex;
             justify-content: center;
-            background-color: #f9f9f9;
-            padding: 0.5rem 0;
+            padding: 1rem 0;
             margin-bottom: 2rem;
+            background-color: #fff;
+            border-bottom: 1px solid #dee2e6;
         }
+
         .categories a {
-            margin: 0 1rem;
+            margin: 0 1.5rem;
             text-decoration: none;
-            color: #333;
-            font-weight: bold;
+            color: #007bff;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
+
         .categories a:hover {
-            text-decoration: underline;
+            color: #0056b3;
         }
+
+        /* Contenedor principal */
         .container {
             max-width: 1200px;
             margin: 2rem auto;
-            padding: 1rem;
+            padding: 1.5rem;
             background: #fff;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
+        /* Título de sección */
         .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #343a40;
+            font-weight: 600;
         }
+
+        /* Productos destacados */
         .scraped-data {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
+
         .data-card {
-            flex: 1 1 calc(33% - 1rem);
-            background: #f9f9f9;
-            padding: 1rem;
-            border: 1px solid #ddd;
+            background: #fff;
+            padding: 1.5rem;
+            border: 1px solid #dee2e6;
             border-radius: 8px;
             text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
+
+        .data-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .data-card img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
+
         .data-card h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
         }
+
+        .data-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Pie de página */
         footer {
             text-align: center;
             padding: 1rem;
-            background-color: #333;
+            background-color: #007bff;
             color: #fff;
             margin-top: 2rem;
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="header-container">
             <h1>WebScraper</h1>
             <div class="header-buttons">
                 {% if is_logged_in %}
-                    <!-- Botón de Perfil (visible si el usuario ha iniciado sesión) -->
-                    <button onclick="window.location.href='/user'">Perfil</button>
+                <button onclick="window.location.href='/user'">Perfil</button>
                 {% else %}
-                    <!-- Botones de Login y Sign Up (visibles si el usuario no ha iniciado sesión) -->
-                    <button onclick="window.location.href='/login'">Login</button>
-                    <button onclick="window.location.href='/signup'">Sign Up</button>
+                <button onclick="window.location.href='/login'">Login</button>
+                <button onclick="window.location.href='/signup'">Sign Up</button>
                 {% endif %}
             </div>
         </div>
@@ -128,8 +191,8 @@
 
     <div class="search-bar">
         <form method="get" action="/scrape-prices" class="search-form">
-            <input type="text" name="search" placeholder="Search for products..." required>
-            <button type="submit">Search</button>
+            <input type="text" name="search" placeholder="Buscar productos..." required>
+            <button type="submit">Buscar</button>
         </form>
     </div>
 
@@ -141,28 +204,33 @@
     </nav>
 
     <div class="container">
-        <h2 class="section-title">Productos mas buscados</h2>
+        <h2 class="section-title">Productos más Buscados</h2>
         <div class="scraped-data">
             <div class="data-card">
+                <img src="/path/to/imagen1.jpg" alt="Alexa Echo Dot">
+                <h3>Alexa Echo Dot</h3>
                 <h3>Producto 1</h3>
-                <p>Precio: $19.99</p>
+                <p>Precio: $45.99</p>
                 <p>Disponibilidad: In Stock</p>
             </div>
             <div class="data-card">
-                <h3>Producto 2</h3>
-                <p>Precio: $15.99</p>
+                <img src="/path/to/imagen2.jpg" alt="Pc Gaming 2">
+                <h3>Pc Gaming</h3>
+                <p>Precio: $899.99</p>
                 <p>Disponibilidad: In Stock</p>
             </div>
             <div class="data-card">
-                <h3>Producto 3</h3>
-                <p>Precio: $12.99</p>
+                <img src="/path/to/imagen3.jpg" alt="Iphone">
+                <h3>Iphone 16 Blue Sky</h3>
+                <p>Precio: $1200</p>
                 <p>Disponibilidad: In Stock</p>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 WebScraper App. All rights reserved.</p>
+        <p>&copy; 2025 WebScraper App. Todos los derechos reservados.</p>
     </footer>
 </body>
+
 </html>

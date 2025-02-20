@@ -1,61 +1,88 @@
 {% extends "components/layout.html" %}
 
 {% block title %}Sign up{% endblock %}
-{% block content %}
-  <div class="row m-md-5 m-3">
-    <h1 class="col">Create a free account</h1>
-  </div>
 
-  <form method="post" action="/data-processing" class="row g-3 mx-3">
-    <div class="col-12 col-md-6">
-      <label for="validationDefault01" class="form-label">First name</label>
-      <input name="firstname" type="text" class="form-control" id="validationDefault01" required />
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <h2 class="card-title text-center mb-4"> Sign Up</h2>
+                    <form method="post" action="/data-processing">
+                        <div class="mb-3">
+                            <label for="firstname" class="form-label">First name</label>
+                            <input name="firstname" type="text" class="form-control" id="firstname" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input name="email" type="text" class="form-control" id="email" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone_number" class="form-label">Phone Number</label>
+                            <input name="phone_number" type="text" class="form-control" id="phone_number" pattern="[\+]?[0-9]{1,4}?[-\s\./0-9]*" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="province" class="form-label">Province</label>
+                            <select name="province" class="form-select" id="province" required>
+                                <option selected disabled value="">Choose...</option>
+                                <option value="guayaquil">Guayas</option>
+                                <option value="pichincha">Pichincha</option>
+                                <option value="manabi">Manabí</option>
+                                <option value="esmeraldas">Esmeraldas</option>
+                                <option value="loja">Loja</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="city" class="form-label">City</label>
+                            <input name="city" type="text" class="form-control" id="city" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="password_user" class="form-label">Password</label>
+                            <input name="password_user" type="password" class="form-control" id="password_user" required />
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-12 col-md-6">
-      <label for="validationDefault02" class="form-label">Email</label>
-      <input name="email" type="text" class="form-control" id="validationDefault02" required />
-    </div>
-    <div class="col-12 col-md-6">
-      <label for="validationDefaultUsername" class="form-label">Phone Number</label>
-      <div class="input-group">
-        <input
-          name="phone_number"
-          type="text"
-          class="form-control"
-          id="validationDefaultPhone"
-          aria-describedby="inputGroupPrepend2"
-          pattern="[\+]?[0-9]{1,4}?[-\s\./0-9]*"  
-          required
-        />
-      </div>
-    </div>
-    <div class="col-12 col-md-6">
-      <label for="validationDefault04" class="form-label">Province</label>
-      <select name="province" class="form-select" id="validationDefault04" required>
-        <option selected disabled value="">Choose...</option>
-        <option value="guayaquil">Guayas</option>
-        <option value="pichincha">Pichincha</option>
-        <option value="manabi">Manabí</option>
-        <option value="esmeraldas">Esmeraldas</option>
-        <option value="loja">Loja</option>
-      </select>
-    </div>
-    <div class="col-12 col-md-6">
-      <label for="validationDefault01" class="form-label">City</label>
-      <input name="city" type="text" class="form-control" id="validationDefault01" required />
-    </div>
-    <div class="col-12 col-md-6">
-      <label for="validationDefault05" class="form-label">Password</label>
-      <input
-        name="password_user"
-        type="password"
-        class="form-control"
-        id="validationDefault05"
-        required
-      />
-    </div>
-    <div class="col-12">
-      <button class="btn btn-primary" type="submit">Send Data</button>
-    </div>
-  </form>
+</div>
+
+<style>
+    /* Estilos adicionales para el formulario de sign up */
+    .card {
+        border-radius: 10px; /* Bordes redondeados para la tarjeta */
+        background-color: #fff; /* Fondo blanco para la tarjeta */
+        border: 1px solid #dee2e6; /* Borde suave */
+    }
+
+    .card-body {
+        padding: 1.5rem; /* Padding para el contenido */
+    }
+
+    .btn-primary {
+        background-color: #007bff; /* Azul brillante */
+        border-color: #007bff;
+        transition: background-color 0.3s ease; /* Transición suave */
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+        border-color: #0056b3;
+    }
+
+    .btn-lg {
+        font-size: 1.2rem; /* Tamaño de fuente más grande */
+        padding: 0.8rem 1.5rem; /* Padding más grande */
+    }
+
+    .alert-danger {
+        background-color: #f8d7da; /* Fondo de alerta roja */
+        color: #721c24; /* Texto rojo oscuro */
+        border: 1px solid #f5c6cb; /* Borde suave para la alerta */
+    }
+</style>
 {% endblock %}

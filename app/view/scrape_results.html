@@ -1,47 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultados de Scraping</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-        }
-        h1 {
-            color: #333;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-        a {
-            color: blue;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-    <h1>Resultados para "{{ search }}"</h1>
+{% extends "components/layout.html" %}
+
+{% block title %}Resultados de Scraping{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center my-4">Resultados para "{{ search }}"</h1>
     {% if products %}
-        <ul>
-            {% for product in products %}
-                <li>
-                    <strong>{{ product.Name }}</strong> - {{ product.Price }} 
-                    <a href="{{ product.Link }}" target="_blank">Ver producto</a>
-                </li>
-            {% endfor %}
-        </ul>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.Name }}</h5>
+                    <p class="card-text">Precio: {{ product.Price }}</p>
+                    <a href="{{ product.Link }}" class="btn btn-primary" target="_blank">Ver producto</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
     {% else %}
-        <p>No se encontraron resultados.</p>
+    <p class="text-center">No se encontraron resultados.</p>
     {% endif %}
-</body>
-</html>
+</div>
+{% endblock %}
